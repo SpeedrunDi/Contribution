@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './ContributionGraph.css';
 
 const daysOfWeek = ['Пн', 'Ср', 'Пт'];
@@ -7,11 +7,11 @@ const months = [
   'Окт', 'Нояб', 'Дек', 'Янв', 'Февр', 'Март'
 ];
 
-const ContributionGraph = ({ data }) => {
+const ContributionGraph = ({data}) => {
   const [activeTooltip, setActiveTooltip] = useState(null);
 
   const formatDate = inputDate => {
-    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    const options = {weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'};
     return new Date(inputDate).toLocaleDateString('ru-RU', options);
   };
 
@@ -24,15 +24,12 @@ const ContributionGraph = ({ data }) => {
   };
 
   const contributionsWithNoData = [];
-  const firstDate = new Date(Object.keys(data)[0]);
-  const nextYear = firstDate.getFullYear() + 1;
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 356);
 
-  const currentDate = new Date(firstDate);
-  currentDate.setDate(currentDate.getDate() - 1);
-  while (currentDate < new Date(nextYear, firstDate.getMonth(), firstDate.getDate() - 2)) {
-    const isoDate = currentDate.toISOString().split('T')[0];
-    contributionsWithNoData.push(isoDate);
+  while (currentDate <= new Date()) {
     currentDate.setDate(currentDate.getDate() + 1);
+    contributionsWithNoData.push(currentDate.toISOString().split('T')[0]);
   }
 
   const contributionsByDate = {};
