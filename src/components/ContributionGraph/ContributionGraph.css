@@ -114,14 +114,14 @@
 
 .contribution-box:hover {
     border: 1px solid rgba(0, 0, 0, 0.50);
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
 }
 
 .contribution-box.visible {
     border: 1px solid rgba(0, 0, 0, 0.90);
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
 }
 
 .tooltip.visible {
